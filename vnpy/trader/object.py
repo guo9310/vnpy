@@ -330,3 +330,18 @@ class HistoryRequest:
     def __post_init__(self):
         """"""
         self.vt_symbol = f"{self.symbol}.{self.exchange.value}"
+
+
+@dataclass
+class CommandRequest:
+    """
+    Request sending to specific gateway for command.
+    """
+
+    symbol: str
+    exchange: Exchange
+    command: str
+
+    def __post_init__(self):
+        """"""
+        self.vt_symbol = f"{self.symbol}.{self.exchange.value}"

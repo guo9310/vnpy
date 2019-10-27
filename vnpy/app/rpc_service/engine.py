@@ -55,6 +55,8 @@ class RpcEngine(BaseEngine):
         self.server.register(self.main_engine.get_all_accounts)
         self.server.register(self.main_engine.get_all_contracts)
         self.server.register(self.main_engine.get_all_active_orders)
+        self.server.register(self.main_engine.get_all_stop_orders)
+        self.server.register(self.main_engine.event_engine.put)
 
     def load_setting(self):
         """"""

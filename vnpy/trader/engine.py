@@ -355,6 +355,7 @@ class OmsEngine(BaseEngine):
         self.main_engine.get_all_accounts = self.get_all_accounts
         self.main_engine.get_all_contracts = self.get_all_contracts
         self.main_engine.get_all_active_orders = self.get_all_active_orders
+        self.main_engine.get_all_stop_orders = self.get_all_stop_orders
 
     def register_event(self):
         """"""
@@ -489,6 +490,12 @@ class OmsEngine(BaseEngine):
                 if order.vt_symbol == vt_symbol
             ]
             return active_orders
+
+    def get_all_stop_orders(self):
+        cta_engine = self.main_engine.get_engine('CtaStrategy')
+        if cta_engine:
+            return cta_engine.stop_orders
+        return {}
 
 
 class EmailEngine(BaseEngine):

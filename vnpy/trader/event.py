@@ -11,3 +11,6 @@ EVENT_POSITION = "ePosition."
 EVENT_ACCOUNT = "eAccount."
 EVENT_CONTRACT = "eContract."
 EVENT_LOG = "eLog"
+
+EVENT_COMMAND = "eCommand."
+EVENT_COMMAND_MSG = "eCommandMsg."
