@@ -115,17 +115,14 @@ class CommandOrderStrategy(CtaTemplate):
     def check_order_condition(self, trade: TradeData):
         if trade.vt_orderid in self.command_orderids:
             # 命令单成交后, 要自动生成两单：1. 止盈单; 2. 本地停止单, 止损
-            if trade.offset is Offset.OPEN:
-                self.stop_win_lose(trade)
-            else:  # 平仓操作
-                position_holding = self.cta_engine.offset_converter.get_position_holding(trade.vt_symbol)
-                pos = position_holding.long_pos - position_holding.short_pos
-                # 判断是否有一手敞口的多单/空单
-                if pos != 0:
-                    return
+            position_holding = self.cta_engine.offset_converter.get_position_holding(trade.vt_symbol)
+            pos = position_holding.long_pos - position_holding.short_pos
+            # 判断是否有一手敞口的多单/空单
+            if pos != 0:
+                return
 
-                if (trade.direction is Direction.LONG and pos > 0) or (trade.direction is Direction.SHORT and pos < 0):
-                    self.stop_win_lose(trade)
+            if (trade.direction is Direction.LONG and pos > 0) or (trade.direction is Direction.SHORT and pos < 0):
+                self.stop_win_lose(trade)
         else:
             # 止盈止损单
             if trade.vt_orderid in self.order_pair:
