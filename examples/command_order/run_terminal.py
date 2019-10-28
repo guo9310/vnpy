@@ -75,7 +75,7 @@ class Terminal(Cmd):
         self.stdout.flush()
 
     def send_command(self, command: str):
-        req = CommandRequest(self.code, Exchange.SHFE, command)
+        req = CommandRequest(self.code, Exchange.CFFEX, command)
         event = Event(EVENT_COMMAND, req)
         self.rpcGateway.client.put(event)
 
