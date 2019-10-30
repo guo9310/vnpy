@@ -63,7 +63,7 @@ def run_child():
     cta_engine.start_all_strategies()
     main_engine.write_log("CTA策略全部启动")
 
-    rpc_engine.start()
+    rpc_engine.start("tcp://127.0.0.1:2015", "tcp://127.0.0.1:5102")
     main_engine.write_log("RPC引擎启动")
 
     while True:

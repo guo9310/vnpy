@@ -118,7 +118,7 @@ class CommandOrderStrategy(CtaTemplate):
             position_holding = self.cta_engine.offset_converter.get_position_holding(trade.vt_symbol)
             pos = position_holding.long_pos - position_holding.short_pos
             # 判断是否有一手敞口的多单/空单
-            if pos != 0:
+            if pos == 0:
                 return
 
             if (trade.direction is Direction.LONG and pos > 0) or (trade.direction is Direction.SHORT and pos < 0):
