@@ -3,6 +3,7 @@ import datetime
 import inspect
 import shlex
 import time
+from typing import List, Dict
 
 from vnpy.app.cta_strategy import (
     CtaTemplate,
@@ -25,15 +26,15 @@ class CommandOrderStrategy(CtaTemplate):
     variables = []
 
     # 最新Tick
-    last_tick = None
+    last_tick:TickData = None
     # 止盈单ID <-> 止损单ID(本地停止单), 用于配对一方成交后取消另一方
-    order_pair = None
+    order_pair:Dict = None
 
     # 止盈止损等设置, 从cta_engine读取
     setting = None
 
     # 命令下单的委托单ID列表
-    command_orderids = None
+    command_orderids:List = None
 
     def __init__(self, cta_engine, strategy_name, vt_symbol, setting):
         """命令行下单策略"""
